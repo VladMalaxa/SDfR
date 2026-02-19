@@ -1,3 +1,12 @@
+//=============================================================================
+// Authors : Vlad Malaxa s2726254, Ricardo Diaz s3681548
+// Group : 2
+// License : LGPL open source license
+//
+// Brief : Edge case where many bifurcations are present in the maze.
+//
+//=============================================================================
+
 #include <array>
 #include <iostream>
 #include <utility>   // std::pair
@@ -14,7 +23,7 @@ enum class Direction
     Left
 };
 
-void printMaze(const Maze& maze)
+void printMaze(const Maze& maze)                    //This function prints the maze on the terminal so that the user can see all the steps in the solving of the maze
 {
     for (const auto& row : maze)
     {
@@ -22,7 +31,7 @@ void printMaze(const Maze& maze)
             std::cout << c << ' ';
         std::cout << '\n';
     }
-    std::cout << "------------------------\n";
+    std::cout << "------------------------\n";      //This function finds the starting "X" position.
 }
 
 std::pair<int, int> findStart(const Maze& maze)
@@ -35,7 +44,7 @@ std::pair<int, int> findStart(const Maze& maze)
     return {-1, -1}; // not found
 }
 
-bool isInside(int r, int c)
+bool isInside(int r, int c)                         //This function checks whether we are still inside the maze
 {
     return r >= 0 && r < SIZE && c >= 0 && c < SIZE;
 }
@@ -47,7 +56,7 @@ bool isExit(int r, int c, int startR, int startC)
     return onBoundary && !(r == startR && c == startC);
 }
 
-void move(Direction dir, int& r, int& c)
+void move(Direction dir, int& r, int& c)            //Moves the current position based on the direction.
 {
     switch (dir)
     {
@@ -97,10 +106,10 @@ int main()
     Maze maze = {{
         {{'#','#','#','#','#','#','#','#','#','#','#','#'}},
         {{'#','.','.','.','#','.','.','.','.','.','.','#'}},
-        {{'.','.','#','.','#','.','#','#','#','#','.','#'}},
-        {{'#','#','#','.','#','.','.','.','.','#','.','#'}},
+        {{'.','.','#','.','#','.','#','#','.','#','.','#'}},
+        {{'#','.','#','.','#','.','.','.','.','#','.','#'}},
         {{'#','.','.','.','.','#','#','#','.','#','.','x'}},
-        {{'#','#','#','#','.','#','.','#','.','#','.','#'}},
+        {{'#','.','#','#','.','.','.','#','.','#','.','#'}},
         {{'#','.','.','#','.','#','.','#','.','#','.','#'}},
         {{'#','.','.','#','.','#','.','#','.','#','.','#'}},
         {{'#','.','.','.','.','.','.','.','.','#','.','#'}},
