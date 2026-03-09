@@ -1,5 +1,5 @@
 //==============================================================
-// Filename    : main.cpp
+// Filename    : Package.cpp
 // Authors     : Vlad Malaxa s2726254, Ricardo Diaz s3681548
 // Group       : PPD Group 2
 // License     :  N.A. or opensource license like LGPL

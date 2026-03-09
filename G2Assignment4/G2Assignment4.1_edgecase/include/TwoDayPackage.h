@@ -3,7 +3,7 @@
 // Authors     : Vlad Malaxa s2726254, Ricardo Diaz s3681548
 // Group       : PPD Group 2
 // License     :  N.A. or opensource license like LGPL
-// Description : This code consists of the TwoDayPackage class definition,
+// Description : This code consists of the TwoDayPackage class implementation,
 // which inherits from the Package class.
 //==============================================================
 
