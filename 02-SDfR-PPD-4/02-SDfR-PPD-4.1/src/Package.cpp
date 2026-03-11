@@ -7,6 +7,7 @@
 //==============================================================
 #include "Package.h"
 
+// Constructor: Initialize a Package object with sender/receiver info and package weight
 Package::Package(std::string sName, std::string sAddr,
                  std::string rName, std::string rAddr,
                  double w)
@@ -16,26 +17,32 @@ Package::Package(std::string sName, std::string sAddr,
       receiverAddress(rAddr),
       weight(w) {}
 
+//Function to calculate the cost of package
 double Package::calculate_Cost() const {
     return weight * 2.50 + 5.0;
 }
 
+// Getter function that returns the sender's name
 std::string Package::getSenderName() const {
     return senderName;
 }
 
+// Getter function that returns the sender's address
 std::string Package::getSenderAddress() const {
     return senderAddress;
 }
 
+// Getter function that returns the sender's address
 std::string Package::getReceiverName() const {
     return receiverName;
 }
 
+// Getter function that returns the receiver's address
 std::string Package::getReceiverAddress() const {
     return receiverAddress;
 }
 
+// Getter function that returns the package weight
 double Package::getWeight() const {
     return weight;
 }

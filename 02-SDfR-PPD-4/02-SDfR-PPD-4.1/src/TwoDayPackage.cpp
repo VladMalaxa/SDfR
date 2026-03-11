@@ -9,6 +9,8 @@
 
 #include "TwoDayPackage.h"
 
+// Constructor: Initialize a Package object with sender/receiver info and package weight
+// by calling the constructor of the base class (Package).
 TwoDayPackage::TwoDayPackage(std::string sName, std::string sAddr,
                              std::string rName, std::string rAddr,
                              double w)

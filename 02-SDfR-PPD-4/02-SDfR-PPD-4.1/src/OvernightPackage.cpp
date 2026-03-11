@@ -8,11 +8,18 @@
 //==============================================================
 #include "OvernightPackage.h"
 #include <string>
+
+// Constructor: Initialize a Package object with sender/receiver info and package weight
+// by calling the constructor of the base class (Package).
 OvernightPackage::OvernightPackage(std::string sName, std::string sAddr,
                                    std::string rName, std::string rAddr,
                                    double w)
     : Package(sName, sAddr, rName, rAddr, w) {}
 
+
+// Function to calculate the cost of overnight shipping
+// It first calculates the normal package cost using the base class
+// method, then adds an extra overnight fee based on the package weight.
 double OvernightPackage::calculate_Cost() const {
     return Package::calculate_Cost() + (weight * weight * 1.10);
 }

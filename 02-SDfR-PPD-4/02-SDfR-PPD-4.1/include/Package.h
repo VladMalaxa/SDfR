@@ -11,6 +11,7 @@
 
 #include <string>
 
+// Base class representing a package
 class Package {
 protected:
     std::string senderName;
@@ -20,18 +21,23 @@ protected:
     double weight;
 
 public:
+    // Constructor
+    // Initializes sender and receiver information and the package weight
     Package(std::string sName, std::string sAddr,
             std::string rName, std::string rAddr,
             double w);
 
+    // Virtual function to calculate the shipping cost, can be overriden by child classes        
     virtual double calculate_Cost() const;
 
+    //getter functions for each attribute 
     std::string getSenderName() const;
     std::string getSenderAddress() const;
     std::string getReceiverName() const;
     std::string getReceiverAddress() const;
     double getWeight() const;
 
+    //Virtual destructor, "virtual" ensures destructors are called in the correct order
     virtual ~Package() {}
 };
 

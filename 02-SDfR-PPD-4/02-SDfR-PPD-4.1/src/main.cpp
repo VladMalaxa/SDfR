@@ -15,6 +15,10 @@
 #include "TwoDayPackage.h"
 #include "OvernightPackage.h"
 
+
+// Function for printing information and shipping cost for each package
+// The function receives a vector containing pointers to Package objects
+// these pinters can also point to child classes like TwoDayPackage or OvernightPackage.
 void print_Costs(const std::vector<Package*>& packages) {
     for (const auto& pkg : packages) {
         std::cout << "Sender: " << pkg->getSenderName()
@@ -34,13 +38,16 @@ void print_Costs(const std::vector<Package*>& packages) {
 }
 
 int main() {
+    // Creates vector storing pointers to Package objects
     std::vector<Package*> packages;
 
+    // Adds a TwoDayPackage object to the vector
     packages.push_back(new TwoDayPackage(
         "Alice", "Street 1",
         "Bob", "Street 2",
         2));
 
+    // Adds an OvernightPackage object to the vector
     packages.push_back(new OvernightPackage(
         "Charlie", "Street 3",
         "Dave", "Street 4",
@@ -56,8 +63,10 @@ int main() {
         "Frank", "Street 6",
         5.0));
 
+    // Calls function to print all package details and shipping costs
     print_Costs(packages);
 
+    //Calls destructors for each package created using "new"
     for (auto p : packages) {
         delete p;
     }

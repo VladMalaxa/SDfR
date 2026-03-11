@@ -3,12 +3,8 @@
 // Authors     : Vlad Malaxa s2726254, Ricardo Diaz s3681548
 // Group       : PPD Group 2
 // License     :  N.A. or opensource license like LGPL
-// Description : This code consists of the main function for assignment 4.1, where we take the 
-// weight of the package and calculate the cost of shipping it using the calculate_Cost function. 
-// We also print out the sender and receiver information, as well as the weight and cost of the package.
-// We test edge cases for TwoDayPackage and OvernightPackage, including zero weight, large weight,
-// empty sender/receiver names and addresses, 
-// and negative weight.
+// Description : This code consists of the main test function for assignment 4.1, where we  test
+//               different possible cases, ensuring proper functioning of the code.
 //==============================================================
 
 
@@ -40,85 +36,103 @@ void print_Costs(const std::vector<Package*>& packages) {
 int main() {//Testing edge cases for TwoDayPackage and OvernightPackage
     std::vector<Package*> packages;
 
+    //Standard weight
     packages.push_back(new TwoDayPackage(
         "Richie", "Street 1",
         "Vlad", "Street 2",
-        2));//Standard weight
+        2));
 
+    //Standard weight
     packages.push_back(new OvernightPackage(
         "Richie", "Street 1",
         "Vlad", "Street 2",
-        3.0));//Standard weight
+        3.0));
 
+    //Edge case: zero weight
     packages.push_back(new TwoDayPackage(
         "Richie", "Street 1",
         "Vlad", "Street 2",
-        0.0));//Edge case: zero weight
-
-    packages.push_back(new OvernightPackage(
-        "Richie", "Street 1",
-        "Vlad", "Street 2",
-        0.0));//Edge case: large weight
-
-    packages.push_back(new TwoDayPackage(
-        "Richie", "Street 1",
-        "Vlad", "Street 2",
-        10000.0));//Edge case: large weight
-
-    packages.push_back(new OvernightPackage(
-        "Richie", "Street 1",
-        "Vlad", "Street 2",
-        10000.0));//Edge case: large weight
+        0.0));
     
+    //Edge case: large weight
+    packages.push_back(new OvernightPackage(
+        "Richie", "Street 1",
+        "Vlad", "Street 2",
+        0.0));
+
+    //Edge case: large weight
+    packages.push_back(new TwoDayPackage(
+        "Richie", "Street 1",
+        "Vlad", "Street 2",
+        10000.0));
+
+    //Edge case: large weight
+    packages.push_back(new OvernightPackage(
+        "Richie", "Street 1",
+        "Vlad", "Street 2",
+        10000.0));
+    
+    //Edge case: empty sender name
     packages.push_back(new TwoDayPackage(
         "", "Street 1",
         "Vlad", "Street 2",
-        3.0));//Edge case: empty sender name
+        3.0));
 
+    //Edge case: large weight
     packages.push_back(new OvernightPackage(
         "", "Street 1",
         "Vlad", "Street 2",
-        3.0));//Edge case: large weight
+        3.0));
 
+    //Edge case: empty sender address
     packages.push_back(new TwoDayPackage(
         "Richie", "",
         "Vlad", "Street 2",
-        3.0));//Edge case: empty sender address
+        3.0));
 
+    //Edge case: empty sender address
     packages.push_back(new OvernightPackage(
         "Richie", "",
         "Vlad", "Street 2",
-        3.0));//Edge case: empty sender address
+        3.0));
 
+    //Edge case: empty receiver name
     packages.push_back(new TwoDayPackage(
         "Richie", "Street 1",
         "", "Street 2",
-        3.0));//Edge case: empty receiver name
+        3.0));
 
+    //Edge case: empty receiver name
     packages.push_back(new OvernightPackage(
         "Richie", "Street 1",
         "", "Street 2",
-        3.0));//Edge case: empty receiver name
+        3.0));
 
+    //Edge case: empty receiver address
     packages.push_back(new TwoDayPackage(
         "Richie", "Street 1",
         "Vlad", "",
-        3.0));//Edge case: empty receiver address
+        3.0));
 
+    //Edge case: empty receiver address
     packages.push_back(new OvernightPackage(
         "Richie", "Street 1",
         "VLad", "",
-        3.0));//Edge case: empty receiver address
+        3.0));
 
+    //Edge case: negative weight
     packages.push_back(new TwoDayPackage(
         "Richie", "Street 1",
         "Vlad", "Street 2",
-        -20.0));//Edge case: negative weight
+        -20.0));
 
+    //Edge case: negative weight
     packages.push_back(new OvernightPackage(
         "Richie", "Street 1",
         "Vlad", "Street 2",
-        -20.0));//Edge case: negative weight
+        -20.0));
+
+        print_Costs(packages);
     for (auto p : packages) {
         delete p;
     }

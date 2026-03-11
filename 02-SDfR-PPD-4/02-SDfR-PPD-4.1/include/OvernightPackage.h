@@ -11,8 +11,12 @@
 
 #include "Package.h"
 
+// OvernightPackage class declaration, inherits from the Package class
 class OvernightPackage : public Package {
 public:
+
+    // Constructor for the OvernightPackage class
+    // Initializes sender and receiver information along with package weight
     OvernightPackage(std::string sName, std::string sAddr,
                      std::string rName, std::string rAddr,
                      double w);
