@@ -5,27 +5,27 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="VIunqgWqdRBsKo7sIXQ3-6" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Package" vertex="1">
-          <mxGeometry height="180" width="190" x="330" y="40" as="geometry">
+          <mxGeometry height="180" width="220" x="310" y="40" as="geometry">
             <mxRectangle height="30" width="90" x="355" y="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="VIunqgWqdRBsKo7sIXQ3-7" parent="VIunqgWqdRBsKo7sIXQ3-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="# SenderName" vertex="1">
-          <mxGeometry height="30" width="190" y="30" as="geometry" />
+        <mxCell id="VIunqgWqdRBsKo7sIXQ3-7" parent="VIunqgWqdRBsKo7sIXQ3-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="# SenderName : string" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
         </mxCell>
-        <mxCell id="VIunqgWqdRBsKo7sIXQ3-15" parent="VIunqgWqdRBsKo7sIXQ3-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="# SenderAddress" vertex="1">
-          <mxGeometry height="30" width="190" y="60" as="geometry" />
+        <mxCell id="VIunqgWqdRBsKo7sIXQ3-15" parent="VIunqgWqdRBsKo7sIXQ3-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="# SenderAddress : string" vertex="1">
+          <mxGeometry height="30" width="220" y="60" as="geometry" />
         </mxCell>
-        <mxCell id="VIunqgWqdRBsKo7sIXQ3-14" parent="VIunqgWqdRBsKo7sIXQ3-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="# ReveiverName" vertex="1">
-          <mxGeometry height="30" width="190" y="90" as="geometry" />
+        <mxCell id="VIunqgWqdRBsKo7sIXQ3-14" parent="VIunqgWqdRBsKo7sIXQ3-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="# ReveiverName : string" vertex="1">
+          <mxGeometry height="30" width="220" y="90" as="geometry" />
         </mxCell>
-        <mxCell id="VIunqgWqdRBsKo7sIXQ3-16" parent="VIunqgWqdRBsKo7sIXQ3-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="# ReveicerAddress" vertex="1">
-          <mxGeometry height="30" width="190" y="120" as="geometry" />
+        <mxCell id="VIunqgWqdRBsKo7sIXQ3-16" parent="VIunqgWqdRBsKo7sIXQ3-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="# ReveicerAddress : string" vertex="1">
+          <mxGeometry height="30" width="220" y="120" as="geometry" />
         </mxCell>
-        <mxCell id="VIunqgWqdRBsKo7sIXQ3-9" parent="VIunqgWqdRBsKo7sIXQ3-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="# Weight" vertex="1">
-          <mxGeometry height="30" width="190" y="150" as="geometry" />
+        <mxCell id="VIunqgWqdRBsKo7sIXQ3-9" parent="VIunqgWqdRBsKo7sIXQ3-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="# Weight : double" vertex="1">
+          <mxGeometry height="30" width="220" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="VIunqgWqdRBsKo7sIXQ3-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;" value="&lt;br&gt;&lt;div&gt;&amp;nbsp;+ calculate_Cost()&lt;/div&gt;" vertex="1">
-          <mxGeometry height="40" width="190" x="330" y="220" as="geometry" />
+        <mxCell id="VIunqgWqdRBsKo7sIXQ3-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;" value="&amp;nbsp;+ Package(sName:string, sAddr:string,&amp;nbsp;&amp;nbsp;&lt;div&gt;&amp;nbsp;rName:string, rAddr:string,&amp;nbsp;&amp;nbsp;w:double)&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;+ calculate_Cost()&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ getSenderName() : string&amp;nbsp;&lt;br&gt;&amp;nbsp;+ getSenderAddress() : string&amp;nbsp;&lt;br&gt;&amp;nbsp;+ getReceiverName() : string&amp;nbsp;&lt;br&gt;&amp;nbsp;+ getReceiverAddress() : string&amp;nbsp;&lt;br&gt;&amp;nbsp;+ getWeight() : double&amp;nbsp;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="220" x="310" y="220" as="geometry" />
         </mxCell>
         <mxCell id="VIunqgWqdRBsKo7sIXQ3-23" edge="1" parent="1" source="VIunqgWqdRBsKo7sIXQ3-29" style="endArrow=block;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endFill=0;endSize=14;" target="VIunqgWqdRBsKo7sIXQ3-18" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -40,16 +40,16 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="VIunqgWqdRBsKo7sIXQ3-25" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;TwoDayPackage&lt;/span&gt;" vertex="1">
-          <mxGeometry height="60" width="140" x="120" y="370" as="geometry" />
+          <mxGeometry height="60" width="190" x="120" y="470" as="geometry" />
         </mxCell>
         <mxCell id="VIunqgWqdRBsKo7sIXQ3-29" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;OvernightPackage&lt;/span&gt;" vertex="1">
-          <mxGeometry height="60" width="140" x="590" y="370" as="geometry" />
+          <mxGeometry height="60" width="200" x="560" y="470" as="geometry" />
         </mxCell>
-        <mxCell id="VIunqgWqdRBsKo7sIXQ3-33" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: left;&quot;&gt;+ calculate_Cost()&lt;/span&gt;" vertex="1">
-          <mxGeometry height="30" width="140" x="590" y="430" as="geometry" />
+        <mxCell id="VIunqgWqdRBsKo7sIXQ3-33" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;" value="&lt;div&gt;&amp;nbsp;+ OvernightPackage(sName:string,&lt;br&gt;&amp;nbsp;sAddr:string, rName:string,&amp;nbsp;&lt;br&gt;&amp;nbsp;rAddr:string, w:double)&amp;nbsp;&lt;span style=&quot;&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;+ calculate_Cost()&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="200" x="560" y="530" as="geometry" />
         </mxCell>
-        <mxCell id="VIunqgWqdRBsKo7sIXQ3-34" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: left;&quot;&gt;+ calculate_Cost()&lt;/span&gt;" vertex="1">
-          <mxGeometry height="30" width="140" x="120" y="430" as="geometry" />
+        <mxCell id="VIunqgWqdRBsKo7sIXQ3-34" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;" value="&amp;nbsp;+ TwoDayPackage(sName:string,&amp;nbsp;&lt;br&gt;&amp;nbsp;sAddr:string, rName:string,&amp;nbsp;&lt;br&gt;&amp;nbsp;rAddr:string, w:double)&amp;nbsp; &amp;nbsp;" vertex="1">
+          <mxGeometry height="80" width="190" x="120" y="530" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
