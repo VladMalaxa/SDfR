@@ -4,8 +4,8 @@
 // Group       : PPD Group 2
 // License     :  N.A. or opensource license like LGPL
 // Description : This code consists of the sequence controller function used for the control of
-// of the RelBot. Inside the SteerRelbot() function, the finite state machine for the turtle movements 
-// is defined, with each value of the int "selection" being tied to a specific trajectory.
+// of the RelBot. Inside the SteerRelbot::calculate_velocity() function, the finite state machine for the turtle movements 
+// is defined, with each value of the int "selection" (line 38) being tied to a specific trajectory.
 //==============================================================
 
 #include "steering.hpp"
@@ -32,13 +32,17 @@ void SteerRelbot::create_topics() {
 
 void SteerRelbot::calculate_velocity() {    
     /* Change the code here: */
-    int selection = 4;
 
+    //Change this int in order to select the different modes: 
+    // 1 - straight line / 2 - circle / 3 - sharp turn / 4 - square /
+    int selection = 2;
+
+    //Obtain inital time
     static rclcpp::Time starting_time = this->get_clock()->now();
     static bool initialized = false;
     static int current_selection = 0;
 
-    //Reset timer in case of selection change
+    //Reset timer in case of selection change or in inital moment
     if (!initialized || current_selection != selection) {
         starting_time = this->get_clock()->now();
         if (starting_time.seconds() > 0.0) {
@@ -49,7 +53,7 @@ void SteerRelbot::calculate_velocity() {
         return;
     }
 
-    // Calculate time since the start of the selection
+    // Calculate time since the start of the selection execution
     double t = (this->get_clock()->now() - starting_time).seconds();
    
     //First case: Straight line
@@ -176,7 +180,7 @@ void SteerRelbot::calculate_velocity() {
     right_velocity = 0;
     }
 
-    if (selection >= 5)
+    if ((selection >= 5)||(selection<1))
     {
     RCLCPP_ERROR(this->get_logger(), "Not a valid selection");
     }
