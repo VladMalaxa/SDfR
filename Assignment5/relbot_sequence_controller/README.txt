@@ -24,4 +24,9 @@ Lastly use the following to run the code:
 ros2 launch relbot_launch relbot_sequence_controller.launch.py
 
 
-In line 35, changing the int changes the function used in the sequence controller.
+In line 38, changing the "selection" int changes the desired trajectory used in the sequence controller:
+selection = 1 : Straight line
+selection = 2 : Circle
+selection = 3 : Straight line followed by sharp 90 degree turn
+selection = 4 : Square
+any other value: Error message
