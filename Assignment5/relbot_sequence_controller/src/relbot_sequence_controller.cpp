@@ -72,7 +72,7 @@ void SteerRelbot::calculate_velocity() {
     //Second case: Movement in a circle.
     if ((selection == 2)&&(t<15))
     {
-    left_velocity = -9;
+    left_velocity = -7.5;
     right_velocity = 10;
     }
     //Stop movement after 15 seconds.
