@@ -1,4 +1,4 @@
-This package detects green objects in camera images and outputs their position and was created by
+This package detects green objects in camera images and outputs their position. Created by:
 Vlad Malaxa	-	s2726254
 Ricardo Díaz	-	s3681548
 
