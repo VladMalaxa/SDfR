@@ -4,7 +4,7 @@
 #include <opencv2/opencv.hpp>
 #include <geometry_msgs/msg/point.hpp>
 
-// ROS2 node that detects green objects in the subscribed image stream and publishes the coordinates of the largest detected object. The node subscribes to the "/image" topic, processes incoming images to identify green objects, and publishes their coordinates if detected.
+// The node subscribes to the "/image" topic first.
 class ImagePositionDetectorNode : public rclcpp::Node {
 public:
     ImagePositionDetectorNode() : Node("image_position_detector_node") {
@@ -37,6 +37,9 @@ private:
         // Chosen HSV range for green
         cv::Scalar lower_green(35, 100, 100);
         cv::Scalar upper_green(85, 255, 255);
+
+        //cv::Scalar lower_green(20, 50, 50);
+        //cv::Scalar upper_green(100, 255, 255);
 
         //Apply mask to highlight green objects and store countours
         cv::inRange(hsv, lower_green, upper_green, mask);

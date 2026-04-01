@@ -1,0 +1,42 @@
+This folder contains the files relevant to Assignment 5 of Software Development for Robotics and was created by group 'PPD 2',
+This group is composed by:
+
+Vlad Malaxa	-	s2726254
+Ricardo Díaz	-	s3681548
+
+
+>>Following the steps bellow will ensure the code is running and displaying the desired turtle movements. 
+
+-Every time you want to source, change directory to your root workspace
+    cd <workspace name>
+
+-Then source by using the following commands when you open a new terminal:
+
+    source /opt/ros/humble/setup.bash
+    source install/setup.bash
+
+-When making changes to the sequence controller.cpp and before running, use the command:
+
+    colcon build
+
+-First, open a new VS window and ensure it is disconnected from WSL.
+-Then run the following:
+    python videoserver.py
+
+
+-In the original VS window connected to WSL, open one terminal, source and run:
+    ros2 launch assignment_6_2_2_ImagePositionDetector image_position_detector_test.launch.py
+
+-Then open a new terminal, source and use the following to run the code:
+
+    ros2 launch relbot_sequence_controller relbot_with_turtlesim.launch.py
+
+
+
+
+In line 38, changing the "selection" int changes the desired trajectory used in the sequence controller:
+selection = 1 : Straight line
+selection = 2 : Circle
+selection = 3 : Straight line followed by sharp 90 degree turn
+selection = 4 : Square
+any other value: Error message
