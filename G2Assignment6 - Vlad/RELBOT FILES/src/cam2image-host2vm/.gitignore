@@ -1,0 +1,10 @@
+.vscode
+Host_environment/camcap.py
+
+build/
+install/
+log/
+
+*.DS_Store
+
+.venv
