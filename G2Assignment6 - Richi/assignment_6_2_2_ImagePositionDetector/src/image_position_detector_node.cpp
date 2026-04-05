@@ -46,6 +46,7 @@ private:
         std::vector<std::vector<cv::Point>> contours;
 
         //Find the largest contour and calculate the coordinates of its center
+        //Also calculatethe total area of green
         cv::findContours(mask, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
         geometry_msgs::msg::Point point_msg;
         if (!contours.empty()) {
@@ -53,14 +54,20 @@ private:
                 [](const std::vector<cv::Point>& a, const std::vector<cv::Point>& b) {
                     return cv::contourArea(a) < cv::contourArea(b);
                 });
+            double area = cv::contourArea(*max_it);
             cv::Moments m = cv::moments(*max_it);
             if (m.m00 > 0) {
                 int cx = static_cast<int>(m.m10 / m.m00);
                 int cy = static_cast<int>(m.m01 / m.m00);
                 point_msg.x = cx;
                 point_msg.y = cy;
+                point_msg.z = area;
+                RCLCPP_INFO(this->get_logger(), "Green object at (x=%f, y=%f, area=%f)", point_msg.x, point_msg.y, point_msg.z);
+            } else {
+                point_msg.x = -1.0;
+                point_msg.y = -1.0;
                 point_msg.z = 0.0;
-                RCLCPP_INFO(this->get_logger(), "Green object at (x=%f, y=%f)", point_msg.x, point_msg.y);
+                RCLCPP_INFO(this->get_logger(), "Detected contour has zero area");
             }
         } else {
             point_msg.x = -1.0;
@@ -79,7 +86,7 @@ private:
         cv::line(vis_img, cv::Point(center_x - 20, center_y), cv::Point(center_x + 20, center_y), cv::Scalar(255, 255, 255), 2);
         cv::line(vis_img, cv::Point(center_x, center_y - 20), cv::Point(center_x, center_y + 20), cv::Scalar(255, 255, 255), 2);
         
-        // Draw contour of the largest green object if detected
+        // Draw contour of the largest green object
         if (!contours.empty()) {
             auto max_it = std::max_element(contours.begin(), contours.end(),
                 [](const std::vector<cv::Point>& a, const std::vector<cv::Point>& b) {

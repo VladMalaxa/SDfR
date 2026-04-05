@@ -5,13 +5,14 @@ Ricardo Díaz	-	s3681548
 Usage:
 
 - Build the workspace with `colcon build`.
-- Source the workspace: `source install/setup.bash`.
+- Source the workspace: 
+  source install/setup.bash
 -Open a different VS Code window that is not connected to WSL, open the folder containing videoserver.py file
 -run the folllowing:
 python videoserver.py
 
 - Launch the test:
-  ros2 launch assignment_6_2_2_ImagePositionDetector image_position_detector_test.launch.py
+  ros2 launch assignment_6_2_2_ImagePositionDetector image_position_detector_test.launch.py socket_ip:=172.23.128.1
 
 
 -To see processed image showing contour and center of green object and center of screen:
