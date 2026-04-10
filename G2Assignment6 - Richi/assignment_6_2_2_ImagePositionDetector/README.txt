@@ -7,17 +7,19 @@ Usage:
 - Build the workspace with `colcon build`.
 - Source the workspace: 
   source install/setup.bash
--Open a different VS Code window that is not connected to WSL, open the folder containing videoserver.py file
--run the folllowing:
-python videoserver.py
+- Open a different VS Code window or terminal that can run your local webcam server. Open the folder containing `videoserver.py`.
+- Run the video server:
+  python videoserver.py
 
-- Launch the test:
+- Launch the test. If your professor's network uses a different reachable host IP for the video server, replace `172.23.128.1` with that address.
   ros2 launch assignment_6_2_2_ImagePositionDetector image_position_detector_test.launch.py socket_ip:=172.23.128.1
 
+  Example if the video server runs on another address:
+  ros2 launch assignment_6_2_2_ImagePositionDetector image_position_detector_test.launch.py socket_ip:=<VIDEO_SERVER_IP>
 
--To see processed image showing contour and center of green object and center of screen:
-- open new terminal
-- run: 
+- To see processed image showing contour and center of green object and center of screen:
+  open new terminal
+  run: 
   ros2 run rqt_image_view rqt_image_view
 
 Node info:
