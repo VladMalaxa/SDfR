@@ -17,13 +17,13 @@ public:
 private:
     void position_callback(const geometry_msgs::msg::Point::SharedPtr msg) {
         geometry_msgs::msg::Twist twist;
+        // No object, stop
         if (msg->x < 0 || msg->y < 0 || msg->z <= 0.0) {
-            // No object, stop
             twist.linear.x = 0.0;
             twist.angular.z = 0.0;
         } else {
             // Parameters for control of the turtle, based on the camera for the webcam used in testing being 300 x 200
-            // Change if needed for different camera size
+            // Change them if needed for different camera size
             double image_width = 300.0;
             double center_x = image_width / 2.0;
             double gain_angular = 0.004;
@@ -33,7 +33,7 @@ private:
             double area = msg->z;
             double offset = msg->x - center_x;
 
-            // Rotate only when the object is sufficiently off-center
+            // Rotate only when the object is sufficiently off-centered
             if (std::fabs(offset) > deadzone) {
                 twist.angular.z = -gain_angular * offset;
                 if (twist.angular.z > 0.6) twist.angular.z = 0.6;

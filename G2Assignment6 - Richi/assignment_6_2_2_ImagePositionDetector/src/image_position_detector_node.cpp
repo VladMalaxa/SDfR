@@ -46,7 +46,7 @@ private:
         std::vector<std::vector<cv::Point>> contours;
 
         //Find the largest contour and calculate the coordinates of its center
-        //Also calculatethe total area of green
+        //Also calculate the total area of green
         cv::findContours(mask, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
         geometry_msgs::msg::Point point_msg;
         if (!contours.empty()) {
@@ -63,13 +63,17 @@ private:
                 point_msg.y = cy;
                 point_msg.z = area;
                 RCLCPP_INFO(this->get_logger(), "Green object at (x=%f, y=%f, area=%f)", point_msg.x, point_msg.y, point_msg.z);
-            } else {
+            } 
+            // If the contour has zero area, print for debuggging
+            else {
                 point_msg.x = -1.0;
                 point_msg.y = -1.0;
                 point_msg.z = 0.0;
                 RCLCPP_INFO(this->get_logger(), "Detected contour has zero area");
             }
-        } else {
+        } 
+        // If no contours are found, publish a message with negative coordinates and zero area to indicate no object detected, print for debugging
+        else {
             point_msg.x = -1.0;
             point_msg.y = -1.0;
             point_msg.z = 0.0;
