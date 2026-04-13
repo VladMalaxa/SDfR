@@ -1,0 +1,26 @@
+Terminal 1:
+cd ~/Assignment_6
+source install/setup.bash
+sudo ./build/demo/demo
+
+Terminal 2:
+cd ~/Assignment_6
+source install/setup.bash
+ros2 run ros_xeno_bridge RosXenoBridge
+
+
+Terminal :3
+cd ~/Assignment_6
+source install/setup.bash
+ros2 run relbot_adapter relbot_adapter --ros-args -p robotmode:=real
+
+
+Terminal 4:
+cd ~/Assignment_6
+source install/setup.bash
+ros2 launch relbot_sequence_controller camera_tracking.launch.py
+
+Terminal 5:
+cd ~/Assignment_6
+source install/setup.bash
+ros2 topic pub --once /XenoCmd std_msgs/msg/Int32 "{data: 1}"
