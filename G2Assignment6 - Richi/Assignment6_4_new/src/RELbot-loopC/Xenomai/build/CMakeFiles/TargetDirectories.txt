@@ -1,0 +1,6 @@
+/home/sdfr-ppd-02/Assignment6_4_new/src/RELbot-loopC/Xenomai/build/CMakeFiles/uninstall.dir
+/home/sdfr-ppd-02/Assignment6_4_new/src/RELbot-loopC/Xenomai/build/CMakeFiles/demo_uninstall.dir
+/home/sdfr-ppd-02/Assignment6_4_new/src/RELbot-loopC/Xenomai/build/CMakeFiles/demo.dir
+/home/sdfr-ppd-02/Assignment6_4_new/src/RELbot-loopC/Xenomai/build/CMakeFiles/test.dir
+/home/sdfr-ppd-02/Assignment6_4_new/src/RELbot-loopC/Xenomai/build/CMakeFiles/edit_cache.dir
+/home/sdfr-ppd-02/Assignment6_4_new/src/RELbot-loopC/Xenomai/build/CMakeFiles/rebuild_cache.dir
