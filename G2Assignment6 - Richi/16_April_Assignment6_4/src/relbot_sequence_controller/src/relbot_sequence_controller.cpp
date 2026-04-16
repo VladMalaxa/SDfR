@@ -140,7 +140,7 @@ void SteerRelbot::calculate_velocity()
         dt = 0.2;
     }
 
-    // Search:
+    // Search mode: target lost or not seen recently
     if (!target_visible_ || (now - last_seen_time_).seconds() > target_timeout_) {
         target_visible_ = false;
 
@@ -163,8 +163,7 @@ void SteerRelbot::calculate_velocity()
         return;
     }
 
-    
-    //Adjustment    
+    // Image based errors
     double center_x = image_width_ / 2.0;
     double offset_x = light_pos.x - center_x;
 
@@ -178,35 +177,43 @@ void SteerRelbot::calculate_velocity()
     double linear_error = 0.0;
 
     if (light_pos.z < small_area_threshold_) {
-        
+        // Target is far -> move forward
         double normalized = (small_area_threshold_ - light_pos.z) / small_area_threshold_;
         normalized = std::clamp(normalized, 0.0, 1.0);
         linear_error = k_linear_ * normalized;
     } else if (light_pos.z > close_area_threshold_) {
-        
+        // Target is too close -> move backward
         double normalized = (light_pos.z / close_area_threshold_) - 1.0;
         normalized = std::clamp(normalized, 0.0, 1.0);
         linear_error = -k_linear_ * normalized;
     } else {
-        
+        // Inside acceptable range
         linear_error = 0.0;
     }
 
-    
-    
+    // First order dynamics
+    // x_dot_set     = (1 / tau_linear_)  * linear_error
+    // theta_dot_set = (1 / tau_angular_) * angular_error
     double x_dot_set = linear_error / tau_linear_;
     double theta_dot_set = angular_error / tau_angular_;
 
-    
+    // Clamp dynamic rates before integration
     x_dot_set = std::clamp(x_dot_set, -max_linear_, max_linear_);
     theta_dot_set = std::clamp(theta_dot_set, -max_angular_, max_angular_);
 
+   
+    // Forward Euler Integration
+    // x_set_(k+1)     = x_set_(k)     + x_dot_set * dt
+    // theta_set_(k+1) = theta_set_(k) + theta_dot_set * dt
     x_set_ += x_dot_set * dt;
     theta_set_ += theta_dot_set * dt;
 
+    // Anti-windup / state limiting
     x_set_ = std::clamp(x_set_, -max_x_set_, max_x_set_);
     theta_set_ = std::clamp(theta_set_, -max_theta_set_, max_theta_set_);
 
+
+    // Command Selection
     double v = x_dot_set;
     double omega = theta_dot_set;
 
@@ -214,6 +221,7 @@ void SteerRelbot::calculate_velocity()
     v = std::clamp(v, -max_linear_, max_linear_);
     omega = std::clamp(omega, -max_angular_, max_angular_);
 
+    // Differential-drive inverse kinematics
     left_velocity  = (v - (omega * wheel_base_width_ / 2.0)) / wheel_radius_;
     right_velocity = (v + (omega * wheel_base_width_ / 2.0)) / wheel_radius_;
 
