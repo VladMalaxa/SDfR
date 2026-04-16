@@ -4,15 +4,20 @@ Ricardo Díaz	-	s3681548
 
 Usage:
 
-- Build the workspace with `colcon build`.
-- Source the workspace: 
-  source /opt/ros/humble/setup.bash
-  source install/setup.bash
 
-- Open a different VS Code window or terminal that can run the local webcam server. Open the folder containing `videoserver.py`.
+
+- Open a different VS Code window or terminal that can run the local webcam server. 
+- Navigate to the folder containing `videoserver.py`.
 - Run the video server:
   python videoserver.py
 
+- Open a wsl terminal
+- Build the workspace:
+    cd ~/<workspace_root>
+    colcon build
+- Source the workspace: 
+    source /opt/ros/humble/setup.bash
+    source install/setup.bash
 - Launch the test. If your network uses a different reachable host IP for the video server, replace `172.23.128.1` with that address.
   ros2 launch assignment_6_2_2_ImagePositionDetector image_position_detector_test.launch.py socket_ip:=172.23.128.1
 
@@ -31,7 +36,7 @@ Usage:
 Node info:
 - Node name: image_position_detector_node
 - Subscribed topic: /image (sensor_msgs/msg/Image)
-- Output: Prints the centroid (x, y) of the largest green object detected in the image.
+- Output: Prints the center (x, y) of the largest green object detected in the image, as well as the area of the green object.
 
 - Node name: turtlesim_controller_node
 - Subscribed topic: /green_object_position (provided by image_position_detector_node)
