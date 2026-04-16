@@ -12,13 +12,14 @@
 #include "steering.hpp"
 #include <geometry_msgs/msg/point.hpp>
 #include <cmath>
+#include <algorithm>
 
 SteerRelbot::SteerRelbot() : Node("steer_relbot") {
     RCLCPP_INFO(this->get_logger(), "Init");
 
     declare_parameter<std::string>("green_object_topic", "/green_object_position");
-    declare_parameter<double>("image_width", 300.0);
-    declare_parameter<double>("image_height", 200.0);
+    declare_parameter<double>("image_width", 160.0);
+    declare_parameter<double>("image_height", 160.0);
     declare_parameter<double>("k_linear", 0.6);
     declare_parameter<double>("k_angular", 0.004);
     declare_parameter<double>("max_angular", 0.8);
@@ -29,6 +30,11 @@ SteerRelbot::SteerRelbot() : Node("steer_relbot") {
     declare_parameter<double>("wheel_radius", 0.05);
     declare_parameter<double>("deadzone_pixels", 25.0);
     declare_parameter<double>("setpoint_stream", 30.0);
+
+    // New parameters for search / rotation mode
+    declare_parameter<double>("target_timeout", 0.5);
+    declare_parameter<double>("search_left_wheel_vel", 3.0);
+    declare_parameter<double>("search_right_wheel_vel", -2.0);
 
     get_parameter("green_object_topic", green_object_topic_);
     get_parameter("image_width", image_width_);
@@ -43,6 +49,11 @@ SteerRelbot::SteerRelbot() : Node("steer_relbot") {
     get_parameter("wheel_radius", wheel_radius_);
     get_parameter("deadzone_pixels", deadzone_pixels_);
     get_parameter("setpoint_stream", setpoint_stream_);
+
+    // New parameter reads
+    get_parameter("target_timeout", target_timeout_);
+    get_parameter("search_left_wheel_vel", search_left_wheel_vel_);
+    get_parameter("search_right_wheel_vel", search_right_wheel_vel_);
 
     create_topics();
 
@@ -59,6 +70,9 @@ SteerRelbot::SteerRelbot() : Node("steer_relbot") {
     light_pos.x = -1.0;
     light_pos.y = -1.0;
     light_pos.z = 0.0;
+
+    target_visible_ = false;
+    last_seen_time_ = this->get_clock()->now();
 }
 
 void SteerRelbot::create_topics() {
@@ -71,12 +85,33 @@ void SteerRelbot::create_topics() {
 
 void SteerRelbot::light_callback(const geometry_msgs::msg::Point::SharedPtr msg) {
     light_pos = *msg;
+
+    // Mark target as visible only if message contains a valid detection
+    if (light_pos.x >= 0.0 && light_pos.y >= 0.0 && light_pos.z > 0.0) {
+        target_visible_ = true;
+        last_seen_time_ = this->get_clock()->now();
+    }
 }
 
 void SteerRelbot::calculate_velocity() {
-    if (light_pos.x < 0.0 || light_pos.y < 0.0 || light_pos.z <= 0.0) {
-        left_velocity = 0.0;
-        right_velocity = 0.0;
+    auto now = this->get_clock()->now();
+
+    // If target was not seen recently, enter search mode
+    if (!target_visible_ || (now - last_seen_time_).seconds() > target_timeout_) {
+        target_visible_ = false;
+
+        RCLCPP_WARN_THROTTLE(
+            this->get_logger(),
+            *this->get_clock(),
+            1000,
+            "Target lost, rotating to search"
+        );
+
+        left_velocity = search_left_wheel_vel_;
+        right_velocity = search_right_wheel_vel_;
+
+        left_velocity = std::clamp(left_velocity, -max_wheel_vel_, max_wheel_vel_);
+        right_velocity = std::clamp(right_velocity, -max_wheel_vel_, max_wheel_vel_);
         return;
     }
 

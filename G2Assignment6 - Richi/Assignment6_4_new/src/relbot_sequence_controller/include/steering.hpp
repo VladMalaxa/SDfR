@@ -7,7 +7,7 @@
 // message type for velocity
 #include "example_interfaces/msg/float64.hpp"
 
-// NEW: message type from vision system
+// message type from vision system
 #include "geometry_msgs/msg/point.hpp"
 
 class SteerRelbot : public rclcpp::Node
@@ -34,6 +34,10 @@ private:
     double right_velocity;
     geometry_msgs::msg::Point light_pos;
 
+    // Search / rotation state
+    bool target_visible_;
+    rclcpp::Time last_seen_time_;
+
     // Parameters
     std::string green_object_topic_;
     double image_width_;
@@ -49,6 +53,11 @@ private:
     double deadzone_pixels_;
     double setpoint_stream_;
 
+    // New parameters for rotation/search mode
+    double target_timeout_;
+    double search_left_wheel_vel_;
+    double search_right_wheel_vel_;
+
     // Methods
     void create_topics();
     void timer_callback();
@@ -58,4 +67,4 @@ private:
     void light_callback(const geometry_msgs::msg::Point::SharedPtr msg);
 };
 
-#endif /*STEER_RELBOT_HPP_*/
+#endif /* STEER_RELBOT_HPP_ */
