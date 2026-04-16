@@ -18,18 +18,18 @@ SteerRelbot::SteerRelbot() : Node("steer_relbot") {
     RCLCPP_INFO(this->get_logger(), "Init");
 
     declare_parameter<std::string>("green_object_topic", "/green_object_position");
-    declare_parameter<double>("image_width", 160.0);
-    declare_parameter<double>("image_height", 160.0);
-    declare_parameter<double>("k_linear", 0.6);
-    declare_parameter<double>("k_angular", 0.004);
+    declare_parameter<double>("image_width", 320.0);
+    declare_parameter<double>("image_height", 320.0);
+    declare_parameter<double>("k_linear", 0.8);
+    declare_parameter<double>("k_angular", 0.008);
     declare_parameter<double>("max_angular", 0.8);
     declare_parameter<double>("max_wheel_vel", 20.0);
     declare_parameter<double>("small_area_threshold", 8000.0);
     declare_parameter<double>("close_area_threshold", 22000.0);
     declare_parameter<double>("wheel_base_width", 0.20);
     declare_parameter<double>("wheel_radius", 0.05);
-    declare_parameter<double>("deadzone_pixels", 25.0);
-    declare_parameter<double>("setpoint_stream", 30.0);
+    declare_parameter<double>("deadzone_pixels", 10.0); // Reduced from 25 to 10 for better responsiveness
+    declare_parameter<double>("setpoint_stream", 100.0); 
 
     // New parameters for search / rotation mode
     declare_parameter<double>("target_timeout", 0.5);
