@@ -1,3 +1,15 @@
+//==============================================================
+// Filename    : relbot_sequence_controller.cpp
+// Authors     : Vlad Malaxa s2726254, Ricardo Diaz s3681548
+// Group       : PPD Group 2
+// License     :  N.A. or opensource license like LGPL
+// Description : This code consists of the green object detection function 
+// it receives images from the "/image" topic, processes them to find the position of the largest 
+// green object, and publishes the coordinates and area of that object to the
+// "/green_object_position" topic. It also publishes a visualization image with the 
+// detected object highlighted to the "/processed_image" topic.
+//==============================================================
+
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/image.hpp>
 #include <cv_bridge/cv_bridge.h>

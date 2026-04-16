@@ -1,3 +1,13 @@
+//==============================================================
+// Filename    : relbot_sequence_controller.cpp
+// Authors     : Vlad Malaxa s2726254, Ricardo Diaz s3681548
+// Group       : PPD Group 2
+// License     :  N.A. or opensource license like LGPL
+// Description : This code consists of the sequence controller function used 
+// for the control of the turtle based on the position of the detected green object.
+// Mainly used for debugging and testing the green object detection.
+//==============================================================
+
 #include <cmath>
 #include <rclcpp/rclcpp.hpp>
 #include <geometry_msgs/msg/point.hpp>
