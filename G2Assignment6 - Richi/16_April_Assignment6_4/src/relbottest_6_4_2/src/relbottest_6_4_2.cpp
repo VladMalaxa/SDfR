@@ -1,3 +1,15 @@
+//==============================================================
+// Filename    : relbottest_6_4_2.cpp
+// Authors     : Vlad Malaxa s2726254, Ricardo Diaz s3681548
+// Group       : PPD Group 2
+// License     :  N.A. or opensource license like LGPL
+// Description : This code consists of a test node for the RelBot that publishes a sequence 
+// of wheel velocity setpoints to test the robot's response. 
+// It can run in a fixed mode where it publishes a single type of motion (e.g., straight, turn) 
+// or in a sequence mode where it cycles through each phase for a specified duration.
+//==============================================================
+
+
 #include <chrono>
 #include <limits>
 #include <memory>
@@ -9,6 +21,7 @@
 
 using namespace std::chrono_literals;
 
+// Represents a single test phase with a name and left/right wheel velocities.
 struct TestPhase
 {
   std::string name;
@@ -16,29 +29,34 @@ struct TestPhase
   double right_velocity;
 };
 
+// A ROS 2 node that publishes wheel velocity setpoints for relbot test scenarios.
 class RelbotTestNode : public rclcpp::Node
 {
 public:
   RelbotTestNode()
   : Node("relbottest_6_4_2")
   {
-    declare_parameter<double>("setpoint_vel", 50.0);
+    // Declare node parameters with default values.
+    declare_parameter<double>("setpoint_vel", 2.0);
     declare_parameter<double>("phase_duration", 4.0);
     declare_parameter<double>("publish_rate_hz", 10.0);
     declare_parameter<bool>("sequence_enabled", true);
     declare_parameter<std::string>("test_mode", "straight");
 
+    // Read configured parameters into member variables.
     get_parameter("setpoint_vel", setpoint_vel_);
     get_parameter("phase_duration", phase_duration_);
     get_parameter("publish_rate_hz", publish_rate_hz_);
     get_parameter("sequence_enabled", sequence_enabled_);
     get_parameter("test_mode", test_mode_);
 
+    // Publishers for left and right motor setpoints.
     left_setpoint_pub_ = create_publisher<example_interfaces::msg::Float64>(
       "/input/left_motor/setpoint_vel", 10);
     right_setpoint_pub_ = create_publisher<example_interfaces::msg::Float64>(
       "/input/right_motor/setpoint_vel", 10);
 
+    // Build the phase sequence used when sequence_enabled is true.
     setup_phases();
 
     RCLCPP_INFO(get_logger(), "relbottest_6_4_2 node started");
@@ -49,6 +67,7 @@ public:
       phase_duration_,
       publish_rate_hz_);
 
+    // Timer used to publish the current setpoint values.
     timer_ = create_wall_timer(
       std::chrono::duration<double>(1.0 / publish_rate_hz_),
       std::bind(&RelbotTestNode::timer_callback, this));
@@ -58,6 +77,7 @@ public:
   }
 
 private:
+  // Define the ordered list of test phases for sequence mode.
   void setup_phases()
   {
     phases_ = {
@@ -70,6 +90,7 @@ private:
     };
   }
 
+  // Return a single test phase based on the configured test_mode parameter.
   const TestPhase & get_test_phase() const
   {
     static const TestPhase left_only{ "left_only", setpoint_vel_, 0.0 };
@@ -97,6 +118,7 @@ private:
     return straight;
   }
 
+  // Publish left and right velocity setpoints.
   void publish_setpoints(double left, double right)
   {
     example_interfaces::msg::Float64 left_msg;
@@ -107,6 +129,7 @@ private:
     right_setpoint_pub_->publish(right_msg);
   }
 
+  // Timer callback selects the active test phase and publishes the corresponding setpoints.
   void timer_callback()
   {
     const TestPhase *current_phase = nullptr;
@@ -146,6 +169,7 @@ private:
 
 int main(int argc, char **argv)
 {
+  // Initialize ROS 2 and run the node until shutdown.
   rclcpp::init(argc, argv);
   rclcpp::spin(std::make_shared<RelbotTestNode>());
   rclcpp::shutdown();
